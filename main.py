@@ -12,10 +12,7 @@ import cv2
 import torch
 import requests
 
-# Rest of your code...
-
-def main():
-    # Your imports and other code here...
+import cv2
 
 def main():
     # Content of the Streamlit app
@@ -36,28 +33,38 @@ def main():
     )
     # More Streamlit content...
 
-import cv2
+    # Open the webcam
+    cap = cv2.VideoCapture(0)
 
-cap = cv2.VideoCapture(0)
+    # Check if the webcam is opened successfully
+    if not cap.isOpened():
+        print("Error: Could not open webcam")
+        return
 
-while True:
-    ret, frame = cap.read()
+    # Loop to capture frames from the webcam
+    while True:
+        # Capture frame-by-frame
+        ret, frame = cap.read()
 
-    if not ret:
-        print("Failed to capture frame from webcam")
-        break
+        # Check if the frame is captured successfully
+        if not ret:
+            print("Error: Could not capture frame")
+            break
 
-    cv2.imshow("Webcam", frame)
+        # Display the frame
+        cv2.imshow('Webcam', frame)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+        # Check if 'q' is pressed to exit
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
-cap.release()
-cv2.destroyAllWindows()
-
+    # Release the webcam
+    cap.release()
+    cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     main()
+
 
 
 
