@@ -21,7 +21,7 @@ def image_to_base64(img):
 
 
 # Load your pre-trained model
-best_model = torch.load("model.pth")
+best_model = torch.load("https://github.com/basuru07/oil_face_detection/blob/main/model.pth")
 best_model.eval()
 
 # Define a function to preprocess the image for inference
