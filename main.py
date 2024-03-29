@@ -15,6 +15,9 @@ import requests
 # Rest of your code...
 
 def main():
+    # Your imports and other code here...
+
+def main():
     # Content of the Streamlit app
     st.set_page_config(page_title="Skin detection",
                        page_icon=":tdata", layout="wide")
@@ -22,10 +25,22 @@ def main():
         "<h1 style='color:#16056B;'>Live Skin Oilyness Detection Web Application</h1>",
         unsafe_allow_html=True
     )
-    # Rest of your code...
+    # Other parts of your Streamlit app...
+
+    # Make sure all the code inside main() is properly indented
+    # Example:
+    st.button("View more", type="primary")
+    st.markdown(
+        "<h3 style='color:#16056B'>Introduction of our Application</h3>",
+        unsafe_allow_html=True
+    )
+    # More Streamlit content...
+
+# Rest of your code...
 
 if __name__ == "__main__":
     main()
+
 
 
 
