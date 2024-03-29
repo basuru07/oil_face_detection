@@ -9,6 +9,8 @@ from torchvision import transforms
 import base64
 from io import BytesIO
 import cv2
+import torch
+import requests
 
 
 
@@ -19,10 +21,19 @@ def image_to_base64(img):
     img_str = base64.b64encode(buffered.getvalue()).decode()
     return img_str
 
+# Define the URL from where to download the model
+model_url = 'https://github.com/basuru07/oil_face_detection/raw/main/model.pth'
 
-# Load your pre-trained model
-best_model = torch.load("https://github.com/basuru07/oil_face_detection/blob/main/model.pth")
+# Download the model file locally
+local_model_path = 'model.pth'
+with open(local_model_path, 'wb') as f:
+    response = requests.get(model_url)
+    f.write(response.content)
+
+# Load your pre-trained model from the local file
+best_model = torch.load(local_model_path, map_location=torch.device('cpu'))
 best_model.eval()
+
 
 # Define a function to preprocess the image for inference
 
