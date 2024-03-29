@@ -13,26 +13,29 @@ import torch
 import requests
 
 import cv2
+import torch
+from PIL import Image
+from torchvision import transforms
+from copy import deepcopy
+
+def preprocess_image(image):
+    preprocess = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ])
+    image = preprocess(image).unsqueeze(0)
+    return image
+
+def predict_skin_type_and_oiliness_level(image_path):
+    # Your implementation here...
+    pass
+
+def get_oiliness_level(predictions):
+    # Your implementation here...
+    pass
 
 def main():
-    # Content of the Streamlit app
-    st.set_page_config(page_title="Skin detection",
-                       page_icon=":tdata", layout="wide")
-    st.markdown(
-        "<h1 style='color:#16056B;'>Live Skin Oilyness Detection Web Application</h1>",
-        unsafe_allow_html=True
-    )
-    # Other parts of your Streamlit app...
-
-    # Make sure all the code inside main() is properly indented
-    # Example:
-    st.button("View more", type="primary")
-    st.markdown(
-        "<h3 style='color:#16056B'>Introduction of our Application</h3>",
-        unsafe_allow_html=True
-    )
-    # More Streamlit content...
-
     # Open the webcam
     cap = cv2.VideoCapture(0)
 
@@ -57,20 +60,6 @@ def main():
         # Check if 'q' is pressed to exit
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-import cv2
-
-def list_camera_devices():
-    # Iterate over camera indices and try to open each one
-    for i in range(10):  # Try indices from 0 to 9
-        cap = cv2.VideoCapture(i)
-        if cap.isOpened():
-            print(f"Camera index {i}: Found")
-            cap.release()
-        else:
-            print(f"Camera index {i}: Not found")
-
-if __name__ == "__main__":
-    list_camera_devices()
 
     # Release the webcam
     cap.release()
