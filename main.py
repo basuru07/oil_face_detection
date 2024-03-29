@@ -22,7 +22,7 @@ def image_to_base64(img):
 
 # Load your pre-trained model
 best_model = torch.load(
-    r"C:\Users\Basuru Yasaruwan\Contacts\Desktop\python face\model.pth")
+    r"C:\Users\Basuru Yasaruwan\Contacts\Desktop\main\model.pth")
 best_model.eval()
 
 # Define a function to preprocess the image for inference
