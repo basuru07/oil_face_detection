@@ -57,6 +57,20 @@ def main():
         # Check if 'q' is pressed to exit
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+import cv2
+
+def list_camera_devices():
+    # Iterate over camera indices and try to open each one
+    for i in range(10):  # Try indices from 0 to 9
+        cap = cv2.VideoCapture(i)
+        if cap.isOpened():
+            print(f"Camera index {i}: Found")
+            cap.release()
+        else:
+            print(f"Camera index {i}: Not found")
+
+if __name__ == "__main__":
+    list_camera_devices()
 
     # Release the webcam
     cap.release()
